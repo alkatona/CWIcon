@@ -81,6 +81,8 @@ namespace CWIcon
             this.Close();
             trayIcon.Visible = false;
             timer.Enabled = false;
+            timer.Dispose();
+            timer = null;
 
             SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
 
