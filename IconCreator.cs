@@ -19,9 +19,7 @@ namespace CWIcon
         {
             None,
             Focus,
-            FocusToBreak,
             Break,
-            BreakToFocus
         }
         private TimerState focusTimerState;
 
@@ -72,6 +70,8 @@ namespace CWIcon
                     focusTimer.Stop();
                     focusTimer.Dispose();
                     focusTimer = null;
+
+                    updateIcon();
                 }
             }
         }
@@ -87,6 +87,8 @@ namespace CWIcon
             focusTimer.Enabled = true;
 
             focusTimer.Start();
+
+            updateIcon();
         }
 
         private void StartFocus(object sender, EventArgs e)
@@ -100,6 +102,8 @@ namespace CWIcon
             focusTimer.Enabled = true;
             
             focusTimer.Start();
+
+            updateIcon();
         }
 
         private void FocusTimer_Elapsed(object sender, EventArgs e)
@@ -131,6 +135,8 @@ namespace CWIcon
                 default:
                     break;
             }
+
+            updateIcon();
         }
 
         private void setupSystemEventListeners()
@@ -197,7 +203,22 @@ namespace CWIcon
 
             IntPtr hIcon;
 
-            g.Clear(Color.Transparent);
+            
+            
+            switch(focusTimerState)
+            {
+                case TimerState.Break:
+                    g.Clear(Color.DarkOliveGreen);
+                    break;
+                case TimerState.Focus:
+                    g.Clear(Color.DarkRed);
+                    break;
+                case TimerState.None:
+                default:
+                    g.Clear(Color.Transparent);
+                    break;
+            }
+
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
             g.DrawString(text, fontToUse, brushToUse, 0, 0);
 
