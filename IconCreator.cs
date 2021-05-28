@@ -10,7 +10,21 @@ namespace CWIcon
     public partial class IconCreator : Form
     {
         private NotifyIcon trayIcon;
-        private System.Timers.Timer timer;
+
+        private Timer focusTimer;
+
+        private AlarmForm alarmMessage;
+
+        private enum TimerState
+        {
+            None,
+            Focus,
+            FocusToBreak,
+            Break,
+            BreakToFocus
+        }
+        private TimerState focusTimerState;
+
 
         public IconCreator()
         {
@@ -20,7 +34,11 @@ namespace CWIcon
             trayIcon = new NotifyIcon()
             {
                 ContextMenu = new ContextMenu(new MenuItem[] {
-                new MenuItem("Update", Update),
+                new MenuItem("Start Focus", StartFocus),
+                new MenuItem("Start Break", StartBreak),
+                new MenuItem("Cancel Timer", CancelTimer ),
+                new MenuItem("-"),
+                new MenuItem("Update CW", Update),
                 new MenuItem("Exit", Exit),
             }),
                 Visible = true
@@ -30,9 +48,89 @@ namespace CWIcon
 
             updateIcon();
 
-            setupTimer();
-
             setupSystemEventListeners();
+        }
+
+        private void showAlarm(string msg)
+        {
+            alarmMessage = new AlarmForm( msg);
+            alarmMessage.OnCancelEvent += CancelTimer;
+            
+            alarmMessage.Show();
+        }
+
+        private void CancelTimer(object sender, EventArgs e)
+        {
+            if (focusTimerState != TimerState.None)
+            {
+                focusTimerState = TimerState.None;
+
+                if(focusTimer != null)
+                {
+                    // dispose timer
+                    focusTimer.Enabled = false;
+                    focusTimer.Stop();
+                    focusTimer.Dispose();
+                    focusTimer = null;
+                }
+            }
+        }
+
+        private void StartBreak(object sender, EventArgs e)
+        {
+            focusTimerState = TimerState.Break;
+
+            // init a timer
+            focusTimer = new Timer();
+            focusTimer.Interval = 5 * 60 * 1000; // 5 minutes
+            focusTimer.Tick += FocusTimer_Elapsed; ;
+            focusTimer.Enabled = true;
+
+            focusTimer.Start();
+        }
+
+        private void StartFocus(object sender, EventArgs e)
+        {
+            focusTimerState = TimerState.Focus;
+
+            // init a timer
+            focusTimer = new Timer();
+            focusTimer.Interval =  25 * 60 * 1000; // 25 minutes
+            focusTimer.Tick += FocusTimer_Elapsed;
+            focusTimer.Enabled = true;
+            
+            focusTimer.Start();
+        }
+
+        private void FocusTimer_Elapsed(object sender, EventArgs e)
+        {
+            switch(focusTimerState)
+            {
+                case TimerState.Focus:
+                    showAlarm("Time to have a break");
+
+                    focusTimerState = TimerState.Break;
+
+                    focusTimer.Interval = 5 * 60 * 1000; // 5 minutes break
+                    focusTimer.Enabled = true;
+                    focusTimer.Start();
+
+                    break;
+
+                case TimerState.Break:
+                    showAlarm("Time to focus");
+
+                    focusTimerState = TimerState.Focus;
+
+                    focusTimer.Interval = 25 * 60 * 1000; // 25 minutes focus
+                    focusTimer.Enabled = true;
+                    focusTimer.Start();
+                    break;
+
+                case TimerState.None:
+                default:
+                    break;
+            }
         }
 
         private void setupSystemEventListeners()
@@ -45,18 +143,6 @@ namespace CWIcon
             updateIcon();
         }
 
-        private void setupTimer()
-        {
-            timer = new System.Timers.Timer();
-            timer.AutoReset = true;
-            timer.Interval = 1000 * 60 * 60; // check every hour
-            timer.Elapsed += Timer_Elapsed;
-            timer.Enabled = true;
-
-            timer.Start();
-        }
-
-        private int tick = 0;
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             updateIcon();
@@ -80,9 +166,6 @@ namespace CWIcon
         {
             this.Close();
             trayIcon.Visible = false;
-            timer.Enabled = false;
-            timer.Dispose();
-            timer = null;
 
             SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
 
