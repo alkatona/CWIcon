@@ -80,6 +80,10 @@ namespace CWIcon
         {
             focusTimerState = TimerState.Break;
 
+            if (focusTimer != null)
+            {
+                focusTimer.Stop();
+            }
             // init a timer
             focusTimer = new Timer();
             focusTimer.Interval = 5 * 60 * 1000; // 5 minutes
@@ -95,6 +99,10 @@ namespace CWIcon
         {
             focusTimerState = TimerState.Focus;
 
+            if (focusTimer != null)
+            {
+                focusTimer.Stop();
+            }
             // init a timer
             focusTimer = new Timer();
             focusTimer.Interval =  25 * 60 * 1000; // 25 minutes
@@ -111,7 +119,7 @@ namespace CWIcon
             switch(focusTimerState)
             {
                 case TimerState.Focus:
-                    showAlarm("Time to have a break");
+                    showAlarm("Time to have a break.");
 
                     focusTimerState = TimerState.Break;
 
@@ -122,7 +130,7 @@ namespace CWIcon
                     break;
 
                 case TimerState.Break:
-                    showAlarm("Time to focus");
+                    showAlarm("Time to focus.");
 
                     focusTimerState = TimerState.Focus;
 
@@ -170,6 +178,7 @@ namespace CWIcon
 
         public void Exit(object sender, EventArgs e)
         {
+            CancelTimer(sender, e);
             this.Close();
             trayIcon.Visible = false;
 

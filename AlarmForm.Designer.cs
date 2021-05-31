@@ -120,7 +120,9 @@ namespace CWIcon
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AlarmForm";
+            this.ShowIcon = false;
             this.Text = "AlarmForm";
+            this.TopMost = true;
             this.Shown += new System.EventHandler(this.AlarmForm_Show);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
