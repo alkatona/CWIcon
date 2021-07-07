@@ -66,5 +66,27 @@ namespace CWIcon
         {
             Console.WriteLine(e.Start.ToString() + " " + e.End.ToString());
         }
+
+        private void tbCopy_Click(object sender, EventArgs e)
+        {
+            string selectedDate = monthCalendar1.SelectionRange.Start.ToShortDateString();
+
+            if (monthCalendar1.SelectionStart.DayOfYear != monthCalendar1.SelectionEnd.DayOfYear)
+            {
+                selectedDate = monthCalendar1.SelectionRange.Start.ToShortDateString() + " - " + monthCalendar1.SelectionRange.End.ToShortDateString();
+            }
+
+            Clipboard.SetText(selectedDate);
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btToday_Click(object sender, EventArgs e)
+        {
+            monthCalendar1.SetSelectionRange(DateTime.Now, DateTime.Now);
+        }
     }
 }
