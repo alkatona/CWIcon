@@ -47,7 +47,10 @@ namespace CWIcon
             updateIcon();
 
             setupSystemEventListeners();
+
         }
+
+
 
         private void showAlarm(string msg)
         {
@@ -74,7 +77,7 @@ namespace CWIcon
                     updateIcon();
                 }
             }
-        }
+        }   
 
         private void StartBreak(object sender, EventArgs e)
         {
@@ -173,7 +176,6 @@ namespace CWIcon
                 calendar.Show();
                 calendar.Activate();
             }
-
         }
 
         public void Exit(object sender, EventArgs e)
@@ -211,8 +213,6 @@ namespace CWIcon
             Graphics g = System.Drawing.Graphics.FromImage(bitmapText);
 
             IntPtr hIcon;
-
-            
             
             switch(focusTimerState)
             {
