@@ -3,7 +3,9 @@
 ## Introduction
 A classic straightforward calendar desktop application for Windows operating system.
 
-	![WCIcon](/doc/cal.png)
+![WCIcon](/doc/cal.png)
+
+![CW](/doc/cwIcon.png)
 
 ## Features
 - Shows the current calendar week of the year on system tray icon
