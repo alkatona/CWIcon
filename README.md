@@ -14,6 +14,10 @@ A classic straightforward calendar desktop application for Windows operating sys
 - Copy selected date to clipboard
 - No install needed just start the program. Just start the [executable](https://github.com/alkatona/CWIcon/blob/master/publish/CWIcon.exe)
 
+## Requirements
+- Windows 7 (recommended / tested on: Windows 10) operating system
+- .NET framework (4.5 or later)
+
 ## Bugs, requests
 Report an issue for bugs or questions.
 
