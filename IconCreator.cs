@@ -56,7 +56,7 @@ namespace CWIcon
             updateIcon();
 
             // ON by default
-            setupActivityTimer(1, ActivityState.Windup);
+            setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
             
             setupSystemEventListeners();
         }
@@ -132,12 +132,12 @@ namespace CWIcon
 
         private void activityConfirmed(object sender, EventArgs e)
         {
-            setupActivityTimer(58, ActivityState.Windup);
+            setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
         }
 
         private void activityPostponed(object sender, EventArgs e)
         {
-            setupActivityTimer(10, ActivityState.Reminder);
+            setupActivityTimer(Properties.Settings.Default.inactivityReminderTimerMins, ActivityState.Reminder);
         }
 
         private void showAlarm(string msg)
