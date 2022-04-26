@@ -69,11 +69,13 @@ namespace CWIcon
 
         private void tbCopy_Click(object sender, EventArgs e)
         {
-            string selectedDate = monthCalendar1.SelectionRange.Start.ToShortDateString();
+            // using iso 8601 yyyy-mm-dd format
+            
+            string selectedDate = monthCalendar1.SelectionRange.Start.ToString("yyyy-MM-dd");
 
             if (monthCalendar1.SelectionStart.DayOfYear != monthCalendar1.SelectionEnd.DayOfYear)
             {
-                selectedDate = monthCalendar1.SelectionRange.Start.ToShortDateString() + " - " + monthCalendar1.SelectionRange.End.ToShortDateString();
+                selectedDate = monthCalendar1.SelectionRange.Start.ToString("yyyy-MM-dd") + " - " + monthCalendar1.SelectionRange.End.ToString("yyyy-MM-dd");
             }
 
             Clipboard.SetText(selectedDate);

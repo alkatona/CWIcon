@@ -10,10 +10,10 @@ namespace CWIcon
     public partial class IconCreator : Form
     {
         private NotifyIcon trayIcon;
-
         private Timer focusTimer;
-
+        private Timer activityTimer;
         private AlarmForm alarmMessage;
+        private ActivityReminderForm activityReminder;
 
         private enum TimerState
         {
@@ -22,6 +22,14 @@ namespace CWIcon
             Break,
         }
         private TimerState focusTimerState;
+
+        private enum ActivityState
+        {
+            Stopped,
+            Windup,
+            Reminder,
+        }
+        private ActivityState activityState;
 
 
         public IconCreator()
@@ -36,7 +44,8 @@ namespace CWIcon
                 new MenuItem("Start Break", StartBreak),
                 new MenuItem("Cancel Timer", CancelTimer ),
                 new MenuItem("-"),
-                new MenuItem("Update CW", Update),
+                new MenuItem("ON/OFF Activity Timer", toggleActivityTimerState),
+                new MenuItem("-"),
                 new MenuItem("Exit", Exit),
             }),
                 Visible = true
@@ -46,11 +55,90 @@ namespace CWIcon
 
             updateIcon();
 
+            // ON by default
+            setupActivityTimer(1, ActivityState.Windup);
+            
             setupSystemEventListeners();
+        }
+
+        private void setupActivityTimer(int minutes, ActivityState state)
+        {
+            activityState = state;
+            // timer init
+            activityTimer = new Timer();
+            activityTimer.Interval = minutes * 60 * 1000; // 58 minutes
+            activityTimer.Tick += ActiviyTimerElapsed;
+            activityTimer.Enabled = true;
+
+            updateIcon();
+        }
+
+        private void stopActivityTimer()
+        {
+            activityState = ActivityState.Stopped;
+            if(activityTimer != null)
+            {
+                activityTimer.Enabled = false;
+                activityTimer.Stop();
+                activityTimer.Dispose();
+                activityTimer = null;
+            }
+
+            updateIcon();
+        }
+
+        private void toggleActivityTimerState(object sender, EventArgs e)
+        {
+            if(activityState == ActivityState.Stopped)
+            {
+                setupActivityTimer(65, ActivityState.Windup);
+            } 
+            else
+            {
+                stopActivityTimer();
+            }
 
         }
 
 
+
+        private void ActiviyTimerElapsed(object sender, EventArgs e)
+        {
+            switch(activityState)
+            {
+                case ActivityState.Windup:
+                case ActivityState.Reminder:
+                    // show a reminder alert
+                    activityReminder = new ActivityReminderForm(Properties.Resources.strActivityReminderNote);
+                    activityReminder.OnCancelEvent += activityConfirmed;
+                    activityReminder.OnFinishEvent += activityPostponed;
+
+                    activityReminder.Show();
+                    break;
+
+                case ActivityState.Stopped:
+                default:
+                    // dispose timer:
+                    if(activityTimer != null)
+                    {
+                        activityTimer.Enabled=false;
+                        activityTimer.Stop();
+                        activityTimer.Dispose();
+                        activityTimer = null;
+                    }
+                    break;
+            }
+        }
+
+        private void activityConfirmed(object sender, EventArgs e)
+        {
+            setupActivityTimer(58, ActivityState.Windup);
+        }
+
+        private void activityPostponed(object sender, EventArgs e)
+        {
+            setupActivityTimer(10, ActivityState.Reminder);
+        }
 
         private void showAlarm(string msg)
         {
@@ -109,6 +197,7 @@ namespace CWIcon
             // init a timer
             focusTimer = new Timer();
             focusTimer.Interval =  25 * 60 * 1000; // 25 minutes
+            // focusTimer.Interval = 25 * 1000; // 25 mils
             focusTimer.Tick += FocusTimer_Elapsed;
             focusTimer.Enabled = true;
             
@@ -212,6 +301,9 @@ namespace CWIcon
             Bitmap bitmapText = new Bitmap((int)SystemParameters.SmallIconWidth, (int)SystemParameters.SmallIconHeight);
             Graphics g = System.Drawing.Graphics.FromImage(bitmapText);
 
+            Pen penToUse = new Pen(brushToUse);
+            Rectangle iconFrame = new Rectangle(0, 0,(int) SystemParameters.SmallIconWidth-1, (int) SystemParameters.SmallIconHeight-1);
+
             IntPtr hIcon;
             
             switch(focusTimerState)
@@ -226,6 +318,11 @@ namespace CWIcon
                 default:
                     g.Clear(Color.Transparent);
                     break;
+            }
+
+            if(activityState != ActivityState.Stopped)
+            {
+                g.DrawRectangle(penToUse, iconFrame);
             }
 
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;

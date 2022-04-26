@@ -4,15 +4,18 @@ using System.Windows.Forms;
 
 namespace CWIcon
 {
-    public partial class AlarmForm : Form
+    public partial class ActivityReminderForm : Form
     {
         private EventHandler onCancelEvent;
+        private EventHandler onFinishEvent;
         public EventHandler OnCancelEvent { get => onCancelEvent; set => onCancelEvent = value; }
+        public EventHandler OnFinishEvent { get => onFinishEvent; set => onFinishEvent = value; }
+
 
         // System.Timers.Timer timer;
         private Timer timer;
 
-        public AlarmForm(string message)
+        public ActivityReminderForm(string message)
         {
             InitializeComponent();
 
@@ -29,6 +32,13 @@ namespace CWIcon
 
         private void btOK_Click(object sender, EventArgs e)
         {
+            // continue timer
+            EventHandler eventHandler = onFinishEvent;
+            if (eventHandler != null)
+            {
+                eventHandler(this, null);
+            }
+            
             disposeTimer();
             this.Close();
         }
@@ -49,8 +59,8 @@ namespace CWIcon
             timer = new Timer();
             timer.Tick += Timer_Tick;
             timer.Interval = 10 * 1000; // 10 sec
-            timer.Enabled = true;
-            timer.Start();
+            //timer.Enabled = true;
+            //timer.Start();
         }
 
         private void disposeTimer()
