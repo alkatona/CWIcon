@@ -23,11 +23,12 @@
     <UpdatePeriodically>true</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>https://github.com/alkatona/CWIcon/tree/master/publish/</UpdateUrl>
+    <UpdateUrl>https://raw.githubusercontent.com/alkatona/CWIcon/master/publish/CWIcon.application/</UpdateUrl>
     <PublisherName>LK</PublisherName>
+    <MinimumRequiredVersion>1.1.0.7</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
