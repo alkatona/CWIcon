@@ -64,11 +64,22 @@ namespace CWIcon
         private void setupActivityTimer(int minutes, ActivityState state)
         {
             activityState = state;
-            // timer init
+
+            // dispose previos timer if present
+            if(activityTimer != null)
+            {
+                activityTimer.Enabled = false;
+                activityTimer.Stop();
+                activityTimer.Dispose();
+                activityTimer = null;
+            }
+            
+            // init new timer
             activityTimer = new Timer();
-            activityTimer.Interval = minutes * 60 * 1000; // 58 minutes
+            activityTimer.Interval = minutes * 60 * 1000;
             activityTimer.Tick += ActiviyTimerElapsed;
             activityTimer.Enabled = true;
+            activityTimer.Start();
 
             updateIcon();
         }
@@ -91,7 +102,7 @@ namespace CWIcon
         {
             if(activityState == ActivityState.Stopped)
             {
-                setupActivityTimer(65, ActivityState.Windup);
+                setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
             } 
             else
             {
@@ -99,8 +110,6 @@ namespace CWIcon
             }
 
         }
-
-
 
         private void ActiviyTimerElapsed(object sender, EventArgs e)
         {
@@ -110,23 +119,24 @@ namespace CWIcon
                 case ActivityState.Reminder:
                     // show a reminder alert
                     activityReminder = new ActivityReminderForm(Properties.Resources.strActivityReminderNote);
-                    activityReminder.OnCancelEvent += activityConfirmed;
-                    activityReminder.OnFinishEvent += activityPostponed;
+
+                    activityReminder.OnFinishEvent += activityConfirmed;
+                    activityReminder.OnCancelEvent += activityPostponed;
 
                     activityReminder.Show();
-                    break;
 
+                    break;
                 case ActivityState.Stopped:
                 default:
-                    // dispose timer:
-                    if(activityTimer != null)
-                    {
-                        activityTimer.Enabled=false;
-                        activityTimer.Stop();
-                        activityTimer.Dispose();
-                        activityTimer = null;
-                    }
                     break;
+            }
+
+            if (activityTimer != null)
+            {
+                activityTimer.Enabled = false;
+                activityTimer.Stop();
+                activityTimer.Dispose();
+                activityTimer = null;
             }
         }
 
