@@ -11,12 +11,15 @@ A classic straightforward calendar desktop application for Windows operating sys
 - Shows the current calendar week of the year on system tray icon
 - Classic WinXP stlye monthly calendar view with calendar week number
 - Simple focus timer for Pomodoro-stlye workflow (25 min work - 5 min pause)
-- Copy selected date to clipboard
-- No install needed just start the program. Just start the [executable](https://github.com/alkatona/CWIcon/blob/master/publish/CWIcon.exe)
+- Copy selected date (even ranges) to clipboard
+- The application reminds you to get up and start moving after an hour. (can be turned off)
 
 ## Requirements
 - Windows 7 (recommended / tested on: Windows 10) operating system
 - .NET framework (4.5 or later)
+
+## Download
+- Download latest version from [here](https://github.com/alkatona/CWIcon/blob/master/publish/setup.exe) and start setup.exe
 
 ## Bugs, requests
 Report an issue for bugs or questions.
