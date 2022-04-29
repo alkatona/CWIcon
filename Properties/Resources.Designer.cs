@@ -61,6 +61,60 @@ namespace CWIcon.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This application cannot be updated. It is likely not a ClickOnce application..
+        /// </summary>
+        internal static string msgUpdateInvalidApplicationDeployment {
+            get {
+                return ResourceManager.GetString("msgUpdateInvalidApplicationDeployment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update feature is turned off in this version..
+        /// </summary>
+        internal static string msgUpdateLocalDeployment {
+            get {
+                return ResourceManager.GetString("msgUpdateLocalDeployment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot check for a new version of the application. The ClickOnce deployment is corrupt. Please redeploy the application and try again..
+        /// </summary>
+        internal static string msgUpdatePackageCorrupt {
+            get {
+                return ResourceManager.GetString("msgUpdatePackageCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The new version of the application cannot be downloaded at this time. \n\nPlease check your network connection, or try again later..
+        /// </summary>
+        internal static string msgUpdateServerInaccessable {
+            get {
+                return ResourceManager.GetString("msgUpdateServerInaccessable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Looking for updates on the server..
+        /// </summary>
+        internal static string msgUpdateStated {
+            get {
+                return ResourceManager.GetString("msgUpdateStated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application has been upgraded, and will now restart..
+        /// </summary>
+        internal static string msgUpdateSuccessRestart {
+            get {
+                return ResourceManager.GetString("msgUpdateSuccessRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to It has been long time since the last time you moved. It is time to be active..
         /// </summary>
         internal static string strActivityReminderNote {

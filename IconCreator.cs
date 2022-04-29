@@ -46,7 +46,7 @@ namespace CWIcon
                 new MenuItem("-"),
                 new MenuItem("ON/OFF Activity Timer", toggleActivityTimerState),
                 new MenuItem("-"),
-                new MenuItem ("Update", updateApplication),
+                new MenuItem ("About CWIcon", updateApplication),
                 new MenuItem("-"),
                 new MenuItem("Exit", Exit),
             }),
@@ -65,7 +65,7 @@ namespace CWIcon
 
         private void updateApplication(object sender, EventArgs e)
         {
-            UpdateForm updateWindow = new UpdateForm("update");
+            UpdateForm updateWindow = new UpdateForm();
 
             updateWindow.ShowDialog();
         }

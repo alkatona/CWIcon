@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="msgUpdateInvalidApplicationDeployment" xml:space="preserve">
+    <value>This application cannot be updated. It is likely not a ClickOnce application.</value>
+  </data>
+  <data name="msgUpdateLocalDeployment" xml:space="preserve">
+    <value>Update feature is turned off in this version.</value>
+  </data>
+  <data name="msgUpdatePackageCorrupt" xml:space="preserve">
+    <value>Cannot check for a new version of the application. The ClickOnce deployment is corrupt. Please redeploy the application and try again.</value>
+  </data>
+  <data name="msgUpdateServerInaccessable" xml:space="preserve">
+    <value>The new version of the application cannot be downloaded at this time. \n\nPlease check your network connection, or try again later.</value>
+  </data>
+  <data name="msgUpdateStated" xml:space="preserve">
+    <value>Looking for updates on the server.</value>
+  </data>
+  <data name="msgUpdateSuccessRestart" xml:space="preserve">
+    <value>The application has been upgraded, and will now restart.</value>
+  </data>
   <data name="strActivityReminderNote" xml:space="preserve">
     <value>It has been long time since the last time you moved. It is time to be active.</value>
   </data>

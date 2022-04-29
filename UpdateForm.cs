@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Deployment.Application;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace CWIcon
@@ -10,10 +11,24 @@ namespace CWIcon
         private EventHandler onCancelEvent;
         public EventHandler OnCancelEvent { get => onCancelEvent; set => onCancelEvent = value; }
 
-        // System.Timers.Timer timer;
-        private Timer timer;
+        public string VersionLabel
+        {
+            get
+            {
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    Version ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                    return string.Format("{0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
+                }
+                else
+                {
+                    var ver = Assembly.GetExecutingAssembly().GetName().Version;
+                    return string.Format("{0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
+                }
+            }
+        }
 
-        public UpdateForm(string message)
+        public UpdateForm()
         {
             InitializeComponent();
 
@@ -24,19 +39,19 @@ namespace CWIcon
 
             this.Location = new Point(x, y);
 
-            lbMessage.Text = message;
+            lbMessage.Text = "CW Icon" + VersionLabel;
 
         }
 
         private void btUpdate_Click(object sender, EventArgs e)
         {
+            btUpdate.Enabled = false;
             // update cucc
             InstallUpdateSyncWithInfo();
         }
 
         private void btCancel_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 
@@ -47,7 +62,7 @@ namespace CWIcon
             if (ApplicationDeployment.IsNetworkDeployed == true)
             {
                 ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
-                MessageBox.Show(ad.UpdateLocation.ToString());
+                tbLongMessage.Text += Properties.Resources.msgUpdateStated;
 
                 try
                 {
@@ -55,26 +70,28 @@ namespace CWIcon
                 }
                 catch (DeploymentDownloadException dde)
                 {
-                    MessageBox.Show("The new version of the application cannot be downloaded at this time. \n\nPlease check your network connection, or try again later. Error: " + dde.Message);
+                    tbLongMessage.Text += Properties.Resources.msgUpdateServerInaccessable;
                     return;
                 }
                 catch (InvalidDeploymentException ide)
                 {
-                    MessageBox.Show("Cannot check for a new version of the application. The ClickOnce deployment is corrupt. Please redeploy the application and try again. Error: " + ide.Message);
+                    tbLongMessage.Text += Properties.Resources.msgUpdatePackageCorrupt;
                     return;
                 }
                 catch (InvalidOperationException ioe)
                 {
-                    MessageBox.Show("This application cannot be updated. It is likely not a ClickOnce application. Error: " + ioe.Message);
+                    tbLongMessage.Text += Properties.Resources.msgUpdateInvalidApplicationDeployment;
                     return;
                 }
 
                 if (info.UpdateAvailable == true)
                 {
                     Boolean doUpdate = true;
-
-                    if (!info.IsUpdateRequired)
+                    /* kept for for silent update:
+                     * 
+                    if (info.IsUpdateRequired == false)
                     {
+                        // optional update
                         DialogResult dr = MessageBox.Show("An update is available. Would you like to update the application now?", "Update Available", MessageBoxButtons.OKCancel);
                         if (!(DialogResult.OK == dr))
                         {
@@ -89,14 +106,14 @@ namespace CWIcon
                             ". The application will now install the update and restart.",
                             "Update Available", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-                    }
+                    } */
 
                     if (doUpdate == true)
                     {
                         try
                         {
                             ad.Update();
-                            MessageBox.Show("The application has been upgraded, and will now restart.");
+                            tbLongMessage.Text += Properties.Resources.msgUpdateSuccessRestart;   
                             Application.Restart();
                         }
                         catch (DeploymentDownloadException dde)
@@ -106,6 +123,10 @@ namespace CWIcon
                         }
                     }
                 }
+            } 
+            else
+            {
+                tbLongMessage.Text += Properties.Resources.msgUpdateLocalDeployment;
             }
         }
 

@@ -35,6 +35,7 @@ namespace CWIcon
             this.btCancel = new System.Windows.Forms.Button();
             this.btUpdate = new System.Windows.Forms.Button();
             this.lbMessage = new System.Windows.Forms.Label();
+            this.tbLongMessage = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -63,13 +64,14 @@ namespace CWIcon
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.Controls.Add(this.tbLongMessage);
             this.panel2.Controls.Add(this.btCancel);
             this.panel2.Controls.Add(this.btUpdate);
             this.panel2.Controls.Add(this.lbMessage);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 36);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(261, 112);
+            this.panel2.Size = new System.Drawing.Size(261, 202);
             this.panel2.TabIndex = 1;
             // 
             // btCancel
@@ -78,11 +80,11 @@ namespace CWIcon
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.Font = new System.Drawing.Font("Lucida Fax", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btCancel.Location = new System.Drawing.Point(135, 60);
+            this.btCancel.Location = new System.Drawing.Point(149, 157);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(100, 33);
             this.btCancel.TabIndex = 1;
-            this.btCancel.Text = "Cancel";
+            this.btCancel.Text = "Close";
             this.btCancel.UseVisualStyleBackColor = false;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
@@ -92,7 +94,7 @@ namespace CWIcon
             this.btUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btUpdate.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btUpdate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btUpdate.Location = new System.Drawing.Point(16, 60);
+            this.btUpdate.Location = new System.Drawing.Point(12, 157);
             this.btUpdate.Name = "btUpdate";
             this.btUpdate.Size = new System.Drawing.Size(100, 33);
             this.btUpdate.TabIndex = 1;
@@ -104,18 +106,28 @@ namespace CWIcon
             // 
             this.lbMessage.AutoSize = true;
             this.lbMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMessage.Location = new System.Drawing.Point(17, 24);
+            this.lbMessage.Location = new System.Drawing.Point(13, 23);
             this.lbMessage.Name = "lbMessage";
-            this.lbMessage.Size = new System.Drawing.Size(117, 17);
+            this.lbMessage.Size = new System.Drawing.Size(54, 17);
             this.lbMessage.TabIndex = 0;
-            this.lbMessage.Text = "It is time to focus.";
+            this.lbMessage.Text = "version";
+            // 
+            // tbLongMessage
+            // 
+            this.tbLongMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbLongMessage.Location = new System.Drawing.Point(12, 43);
+            this.tbLongMessage.Multiline = true;
+            this.tbLongMessage.Name = "tbLongMessage";
+            this.tbLongMessage.ReadOnly = true;
+            this.tbLongMessage.Size = new System.Drawing.Size(237, 97);
+            this.tbLongMessage.TabIndex = 2;
             // 
             // UpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(261, 148);
+            this.ClientSize = new System.Drawing.Size(261, 238);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -139,5 +151,6 @@ namespace CWIcon
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.Label lbMessage;
+        private System.Windows.Forms.TextBox tbLongMessage;
     }
 }
