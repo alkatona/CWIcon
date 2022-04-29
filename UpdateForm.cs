@@ -123,6 +123,10 @@ namespace CWIcon
                         }
                     }
                 }
+                else
+                {
+                    tbLongMessage.Text += Properties.Resources.msgUpdateNoUpdate;
+                }
             } 
             else
             {

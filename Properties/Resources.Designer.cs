@@ -79,6 +79,15 @@ namespace CWIcon.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No update available. You are using the latest version of the application..
+        /// </summary>
+        internal static string msgUpdateNoUpdate {
+            get {
+                return ResourceManager.GetString("msgUpdateNoUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot check for a new version of the application. The ClickOnce deployment is corrupt. Please redeploy the application and try again..
         /// </summary>
         internal static string msgUpdatePackageCorrupt {

@@ -123,6 +123,9 @@
   <data name="msgUpdateLocalDeployment" xml:space="preserve">
     <value>Update feature is turned off in this version.</value>
   </data>
+  <data name="msgUpdateNoUpdate" xml:space="preserve">
+    <value>No update available. You are using the latest version of the application.</value>
+  </data>
   <data name="msgUpdatePackageCorrupt" xml:space="preserve">
     <value>Cannot check for a new version of the application. The ClickOnce deployment is corrupt. Please redeploy the application and try again.</value>
   </data>
