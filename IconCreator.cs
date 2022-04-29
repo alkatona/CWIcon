@@ -46,6 +46,8 @@ namespace CWIcon
                 new MenuItem("-"),
                 new MenuItem("ON/OFF Activity Timer", toggleActivityTimerState),
                 new MenuItem("-"),
+                new MenuItem ("Update", updateApplication),
+                new MenuItem("-"),
                 new MenuItem("Exit", Exit),
             }),
                 Visible = true
@@ -59,6 +61,13 @@ namespace CWIcon
             setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
             
             setupSystemEventListeners();
+        }
+
+        private void updateApplication(object sender, EventArgs e)
+        {
+            UpdateForm updateWindow = new UpdateForm("update");
+
+            updateWindow.ShowDialog();
         }
 
         private void setupActivityTimer(int minutes, ActivityState state)
@@ -125,6 +134,8 @@ namespace CWIcon
 
                     activityReminder.Show();
 
+                    activityState = ActivityState.Stopped;
+
                     break;
                 case ActivityState.Stopped:
                 default:
@@ -138,6 +149,8 @@ namespace CWIcon
                 activityTimer.Dispose();
                 activityTimer = null;
             }
+
+            updateIcon();
         }
 
         private void activityConfirmed(object sender, EventArgs e)
