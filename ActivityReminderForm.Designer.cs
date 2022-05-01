@@ -29,6 +29,7 @@ namespace CWIcon
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivityReminderForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -134,9 +135,10 @@ namespace CWIcon
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ActivityReminderForm";
             this.ShowIcon = false;
-            this.Text = "ActivityReminderForm";
+            this.Text = "CWIcon";
             this.TopMost = true;
             this.Shown += new System.EventHandler(this.AlarmForm_Show);
             this.panel1.ResumeLayout(false);

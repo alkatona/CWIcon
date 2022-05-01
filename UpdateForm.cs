@@ -62,7 +62,7 @@ namespace CWIcon
             if (ApplicationDeployment.IsNetworkDeployed == true)
             {
                 ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
-                tbLongMessage.Text += Properties.Resources.msgUpdateStated;
+                tbLongMessage.Text += Properties.Resources.msgUpdateStated + Environment.NewLine;
 
                 try
                 {
@@ -70,17 +70,17 @@ namespace CWIcon
                 }
                 catch (DeploymentDownloadException dde)
                 {
-                    tbLongMessage.Text += Properties.Resources.msgUpdateServerInaccessable;
+                    tbLongMessage.Text += Properties.Resources.msgUpdateServerInaccessable + Environment.NewLine;
                     return;
                 }
                 catch (InvalidDeploymentException ide)
                 {
-                    tbLongMessage.Text += Properties.Resources.msgUpdatePackageCorrupt;
+                    tbLongMessage.Text += Properties.Resources.msgUpdatePackageCorrupt + Environment.NewLine;
                     return;
                 }
                 catch (InvalidOperationException ioe)
                 {
-                    tbLongMessage.Text += Properties.Resources.msgUpdateInvalidApplicationDeployment;
+                    tbLongMessage.Text += Properties.Resources.msgUpdateInvalidApplicationDeployment + Environment.NewLine;
                     return;
                 }
 
@@ -113,7 +113,7 @@ namespace CWIcon
                         try
                         {
                             ad.Update();
-                            tbLongMessage.Text += Properties.Resources.msgUpdateSuccessRestart;   
+                            tbLongMessage.Text += Properties.Resources.msgUpdateSuccessRestart + Environment.NewLine;   
                             Application.Restart();
                         }
                         catch (DeploymentDownloadException dde)
@@ -125,12 +125,12 @@ namespace CWIcon
                 }
                 else
                 {
-                    tbLongMessage.Text += Properties.Resources.msgUpdateNoUpdate;
+                    tbLongMessage.Text += Properties.Resources.msgUpdateNoUpdate + Environment.NewLine;
                 }
             } 
             else
             {
-                tbLongMessage.Text += Properties.Resources.msgUpdateLocalDeployment;
+                tbLongMessage.Text += Properties.Resources.msgUpdateLocalDeployment + Environment.NewLine;
             }
         }
 

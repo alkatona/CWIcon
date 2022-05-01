@@ -1,7 +1,7 @@
 ﻿
 namespace CWIcon
 {
-    partial class UpdateForm
+    partial class SettingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,14 +29,13 @@ namespace CWIcon
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tbLongMessage = new System.Windows.Forms.TextBox();
             this.btCancel = new System.Windows.Forms.Button();
-            this.btUpdate = new System.Windows.Forms.Button();
-            this.lbMessage = new System.Windows.Forms.Label();
+            this.cbStatup = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cbActivityReminderOn = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -58,32 +57,9 @@ namespace CWIcon
             this.lbTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbTitle.Location = new System.Drawing.Point(11, 4);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(146, 25);
+            this.lbTitle.Size = new System.Drawing.Size(86, 25);
             this.lbTitle.TabIndex = 0;
-            this.lbTitle.Text = "About CWIcon";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel2.Controls.Add(this.tbLongMessage);
-            this.panel2.Controls.Add(this.btCancel);
-            this.panel2.Controls.Add(this.btUpdate);
-            this.panel2.Controls.Add(this.lbMessage);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 36);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(261, 202);
-            this.panel2.TabIndex = 1;
-            // 
-            // tbLongMessage
-            // 
-            this.tbLongMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLongMessage.Location = new System.Drawing.Point(12, 43);
-            this.tbLongMessage.Multiline = true;
-            this.tbLongMessage.Name = "tbLongMessage";
-            this.tbLongMessage.ReadOnly = true;
-            this.tbLongMessage.Size = new System.Drawing.Size(237, 97);
-            this.tbLongMessage.TabIndex = 2;
+            this.lbTitle.Text = "Settings";
             // 
             // btCancel
             // 
@@ -99,31 +75,42 @@ namespace CWIcon
             this.btCancel.UseVisualStyleBackColor = false;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
-            // btUpdate
+            // cbStatup
             // 
-            this.btUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(152)))), ((int)(((byte)(137)))));
-            this.btUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btUpdate.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btUpdate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btUpdate.Location = new System.Drawing.Point(12, 157);
-            this.btUpdate.Name = "btUpdate";
-            this.btUpdate.Size = new System.Drawing.Size(100, 33);
-            this.btUpdate.TabIndex = 1;
-            this.btUpdate.Text = "Update";
-            this.btUpdate.UseVisualStyleBackColor = false;
-            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
+            this.cbStatup.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbStatup.Location = new System.Drawing.Point(16, 20);
+            this.cbStatup.Name = "cbStatup";
+            this.cbStatup.Size = new System.Drawing.Size(163, 23);
+            this.cbStatup.TabIndex = 2;
+            this.cbStatup.Text = "Start App with PC";
+            this.cbStatup.UseVisualStyleBackColor = true;
+            this.cbStatup.CheckedChanged += new System.EventHandler(this.cbStartupChanged);
             // 
-            // lbMessage
+            // panel2
             // 
-            this.lbMessage.AutoSize = true;
-            this.lbMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMessage.Location = new System.Drawing.Point(13, 14);
-            this.lbMessage.Name = "lbMessage";
-            this.lbMessage.Size = new System.Drawing.Size(54, 17);
-            this.lbMessage.TabIndex = 0;
-            this.lbMessage.Text = "version";
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.Controls.Add(this.cbActivityReminderOn);
+            this.panel2.Controls.Add(this.cbStatup);
+            this.panel2.Controls.Add(this.btCancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 36);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(261, 202);
+            this.panel2.TabIndex = 1;
             // 
-            // UpdateForm
+            // cbActivityReminderOn
+            // 
+            this.cbActivityReminderOn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbActivityReminderOn.AutoSize = true;
+            this.cbActivityReminderOn.Location = new System.Drawing.Point(16, 49);
+            this.cbActivityReminderOn.Name = "cbActivityReminderOn";
+            this.cbActivityReminderOn.Size = new System.Drawing.Size(163, 23);
+            this.cbActivityReminderOn.TabIndex = 2;
+            this.cbActivityReminderOn.Text = "Activity timer start automatically";
+            this.cbActivityReminderOn.UseVisualStyleBackColor = true;
+            this.cbActivityReminderOn.CheckedChanged += new System.EventHandler(this.cbActivityTimerChanged);
+            // 
+            // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,7 +120,7 @@ namespace CWIcon
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "UpdateForm";
+            this.Name = "SettingForm";
             this.ShowIcon = false;
             this.Text = "CWIcon";
             this.TopMost = true;
@@ -149,10 +136,9 @@ namespace CWIcon
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbTitle;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btCancel;
-        private System.Windows.Forms.Button btUpdate;
-        private System.Windows.Forms.Label lbMessage;
-        private System.Windows.Forms.TextBox tbLongMessage;
+        private System.Windows.Forms.CheckBox cbStatup;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox cbActivityReminderOn;
     }
 }

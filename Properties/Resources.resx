@@ -141,4 +141,7 @@
   <data name="strActivityReminderNote" xml:space="preserve">
     <value>It has been long time since the last time you moved. It is time to be active.</value>
   </data>
+  <data name="strAppName" xml:space="preserve">
+    <value>CW Icon</value>
+  </data>
 </root>

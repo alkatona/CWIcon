@@ -131,5 +131,14 @@ namespace CWIcon.Properties {
                 return ResourceManager.GetString("strActivityReminderNote", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CW Icon.
+        /// </summary>
+        internal static string strAppName {
+            get {
+                return ResourceManager.GetString("strAppName", resourceCulture);
+            }
+        }
     }
 }

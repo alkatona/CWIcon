@@ -1,7 +1,7 @@
 ﻿
 namespace CWIcon
 {
-    partial class IconCreator
+    partial class ApplicationCore
     {
         /// <summary>
         /// Required designer variable.

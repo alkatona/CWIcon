@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CWIcon
 {
-    public partial class IconCreator : Form
+    public partial class ApplicationCore : Form
     {
         private NotifyIcon trayIcon;
         private Timer focusTimer;
@@ -31,11 +31,27 @@ namespace CWIcon
         }
         private ActivityState activityState;
 
-
-        public IconCreator()
+        public ApplicationCore()
         {
             InitializeComponent();
 
+            initTrayIcon();
+
+            // set activity timer ON by default
+            if(Properties.Settings.Default.inactivityTimerAutoRun == true)
+            {
+                setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
+            }
+            else
+            {
+                stopActivityTimer();
+            }
+            
+            setupSystemEventListeners();
+        }
+
+        private void initTrayIcon()
+        {
             // Initialize Tray Icon
             trayIcon = new NotifyIcon()
             {
@@ -44,9 +60,10 @@ namespace CWIcon
                 new MenuItem("Start Break", StartBreak),
                 new MenuItem("Cancel Timer", CancelTimer ),
                 new MenuItem("-"),
-                new MenuItem("ON/OFF Activity Timer", toggleActivityTimerState),
+                new MenuItem("Activity Reminder On/Off", toggleActivityTimerState),
                 new MenuItem("-"),
-                new MenuItem ("About CWIcon", updateApplication),
+                new MenuItem ("Settings", openSettings),
+                new MenuItem ("About CWIcon", openAboutForm),
                 new MenuItem("-"),
                 new MenuItem("Exit", Exit),
             }),
@@ -56,14 +73,15 @@ namespace CWIcon
             trayIcon.Click += TrayIcon_Click;
 
             updateIcon();
-
-            // ON by default
-            setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
-            
-            setupSystemEventListeners();
         }
 
-        private void updateApplication(object sender, EventArgs e)
+        private void openSettings(object o, EventArgs e)
+        {
+            SettingForm sf = new SettingForm();
+            sf.ShowDialog();
+        }
+
+        private void openAboutForm(object sender, EventArgs e)
         {
             UpdateForm updateWindow = new UpdateForm();
 
@@ -75,14 +93,14 @@ namespace CWIcon
             activityState = state;
 
             // dispose previos timer if present
-            if(activityTimer != null)
+            if (activityTimer != null)
             {
                 activityTimer.Enabled = false;
                 activityTimer.Stop();
                 activityTimer.Dispose();
                 activityTimer = null;
             }
-            
+
             // init new timer
             activityTimer = new Timer();
             activityTimer.Interval = minutes * 60 * 1000;

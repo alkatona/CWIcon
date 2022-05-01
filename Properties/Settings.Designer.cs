@@ -46,5 +46,29 @@ namespace CWIcon.Properties {
                 this["inactivityReminderTimerMins"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool runAtStartup {
+            get {
+                return ((bool)(this["runAtStartup"]));
+            }
+            set {
+                this["runAtStartup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool inactivityTimerAutoRun {
+            get {
+                return ((bool)(this["inactivityTimerAutoRun"]));
+            }
+            set {
+                this["inactivityTimerAutoRun"] = value;
+            }
+        }
     }
 }
