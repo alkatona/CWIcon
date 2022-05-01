@@ -47,7 +47,10 @@ namespace CWIcon
 
             if (cbStatup.Checked == true)
             {
-                string appPath = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName;
+                // string appPath = Application.ExecutablePath; // no
+                // string appPath = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName;
+                string appPath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+                
 
                 regKeyLocation.SetValue(Properties.Resources.strAppName, appPath);
 
