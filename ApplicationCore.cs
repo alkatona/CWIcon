@@ -48,6 +48,7 @@ namespace CWIcon
             }
             
             setupSystemEventListeners();
+
         }
 
         private void initTrayIcon()

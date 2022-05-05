@@ -26,13 +26,24 @@ namespace CWIcon
 
             cbStatup.Checked = Properties.Settings.Default.runAtStartup;
             cbActivityReminderOn.Checked = Properties.Settings.Default.inactivityTimerAutoRun;
+
+            inActivityTimer.Value = Properties.Settings.Default.inactivityTimeMins;
+            inReminderTime.Value = Properties.Settings.Default.inactivityReminderTimerMins;
         }
 
         private void btCancel_Click(object sender, EventArgs e)
         {
+            saveTimeValues();
+
             Properties.Settings.Default.Save();
             writeRegistry();
             this.Close();
+        }
+
+        private void saveTimeValues()
+        {
+            Properties.Settings.Default.inactivityTimeMins = (int)inActivityTimer.Value;
+            Properties.Settings.Default.inactivityReminderTimerMins = (int)inReminderTime.Value;
         }
 
         private void cbStartupChanged(object sender, EventArgs e)

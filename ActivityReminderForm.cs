@@ -11,9 +11,7 @@ namespace CWIcon
         public EventHandler OnCancelEvent { get => onCancelEvent; set => onCancelEvent = value; }
         public EventHandler OnFinishEvent { get => onFinishEvent; set => onFinishEvent = value; }
 
-
-        // System.Timers.Timer timer;
-        private Timer timer;
+        private Timer fadeTimer;
 
         public ActivityReminderForm(string message)
         {
@@ -38,9 +36,7 @@ namespace CWIcon
             {
                 eventHandler(this, null);
             }
-            
-            disposeTimer();
-            this.Close();
+            this.CloseMe();
         }
 
         private void btCancel_Click(object sender, EventArgs e)
@@ -50,48 +46,61 @@ namespace CWIcon
             {
                 eventHandler(this, null);
             }
-            disposeTimer();
-            this.Close();
+            this.CloseMe();
         }
 
-        private void AlarmForm_Show(object sender, EventArgs e)
-        {
-            timer = new Timer();
-            timer.Tick += Timer_Tick;
-            timer.Interval = 10 * 1000; // 10 sec
-            //timer.Enabled = true;
-            //timer.Start();
-        }
-
-        private void disposeTimer()
-        {
-            if(timer != null)
-            {
-                timer.Stop();
-                timer.Enabled = false;
-                timer.Dispose();
-               
-                timer = null;
-                
-            }
-        }
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            disposeTimer();
-            this.Close();
+            this.CloseMe();
         }
 
         private void AlarmForm_Load(object sender, EventArgs e)
         {
-            
+            Opacity = 0;
+            fadeTimer = new Timer();
+            fadeTimer.Interval = 10;
+            fadeTimer.Tick += FadeInTimer_Tick;
+
+            fadeTimer.Start();
         }
 
-
-        private void Timer_Tick(object sender, EventArgs e)
+        private void FadeInTimer_Tick(object sender, EventArgs e)
         {
-            disposeTimer();
-            this.Close();
+            if(Opacity >= 1)
+            {
+                fadeTimer.Stop();
+                fadeTimer.Dispose();
+            }
+            else
+            {
+                Opacity += 0.05;
+            }
+        }
+
+        private void CloseMe()
+        {
+            Opacity = 1;
+            fadeTimer = new Timer();
+            fadeTimer.Interval = 10;
+            fadeTimer.Tick += FadeOutTimer_Tick;
+
+            fadeTimer.Start();
+        }
+
+        private void FadeOutTimer_Tick(object sender, EventArgs e)
+        {
+            if (Opacity <= 0)
+            {
+                fadeTimer.Stop();
+                fadeTimer.Dispose();
+
+                this.Close();
+            }
+            else
+            {
+                Opacity -= 0.05;
+            }
         }
     }
 }

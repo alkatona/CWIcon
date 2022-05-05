@@ -36,8 +36,14 @@ namespace CWIcon
             this.cbStatup = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbActivityReminderOn = new System.Windows.Forms.CheckBox();
+            this.inActivityTimer = new System.Windows.Forms.NumericUpDown();
+            this.inReminderTime = new System.Windows.Forms.NumericUpDown();
+            this.lbActivityTimer = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inActivityTimer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inReminderTime)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -47,7 +53,7 @@ namespace CWIcon
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(261, 36);
+            this.panel1.Size = new System.Drawing.Size(200, 36);
             this.panel1.TabIndex = 0;
             // 
             // lbTitle
@@ -67,7 +73,7 @@ namespace CWIcon
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.Font = new System.Drawing.Font("Lucida Fax", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btCancel.Location = new System.Drawing.Point(149, 157);
+            this.btCancel.Location = new System.Drawing.Point(46, 157);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(100, 33);
             this.btCancel.TabIndex = 1;
@@ -78,7 +84,7 @@ namespace CWIcon
             // cbStatup
             // 
             this.cbStatup.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbStatup.Location = new System.Drawing.Point(16, 20);
+            this.cbStatup.Location = new System.Drawing.Point(16, 17);
             this.cbStatup.Name = "cbStatup";
             this.cbStatup.Size = new System.Drawing.Size(163, 23);
             this.cbStatup.TabIndex = 2;
@@ -89,20 +95,24 @@ namespace CWIcon
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lbActivityTimer);
+            this.panel2.Controls.Add(this.inReminderTime);
+            this.panel2.Controls.Add(this.inActivityTimer);
             this.panel2.Controls.Add(this.cbActivityReminderOn);
             this.panel2.Controls.Add(this.cbStatup);
             this.panel2.Controls.Add(this.btCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 36);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(261, 202);
+            this.panel2.Size = new System.Drawing.Size(200, 202);
             this.panel2.TabIndex = 1;
             // 
             // cbActivityReminderOn
             // 
             this.cbActivityReminderOn.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbActivityReminderOn.AutoSize = true;
-            this.cbActivityReminderOn.Location = new System.Drawing.Point(16, 49);
+            this.cbActivityReminderOn.Location = new System.Drawing.Point(16, 46);
             this.cbActivityReminderOn.Name = "cbActivityReminderOn";
             this.cbActivityReminderOn.Size = new System.Drawing.Size(163, 23);
             this.cbActivityReminderOn.TabIndex = 2;
@@ -110,12 +120,75 @@ namespace CWIcon
             this.cbActivityReminderOn.UseVisualStyleBackColor = true;
             this.cbActivityReminderOn.CheckedChanged += new System.EventHandler(this.cbActivityTimerChanged);
             // 
+            // inActivityTimer
+            // 
+            this.inActivityTimer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.inActivityTimer.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.inActivityTimer.Location = new System.Drawing.Point(127, 75);
+            this.inActivityTimer.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.inActivityTimer.Name = "inActivityTimer";
+            this.inActivityTimer.Size = new System.Drawing.Size(52, 20);
+            this.inActivityTimer.TabIndex = 3;
+            this.inActivityTimer.Value = new decimal(new int[] {
+            55,
+            0,
+            0,
+            0});
+            // 
+            // inReminderTime
+            // 
+            this.inReminderTime.Location = new System.Drawing.Point(127, 101);
+            this.inReminderTime.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.inReminderTime.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.inReminderTime.Name = "inReminderTime";
+            this.inReminderTime.Size = new System.Drawing.Size(52, 20);
+            this.inReminderTime.TabIndex = 3;
+            this.inReminderTime.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // lbActivityTimer
+            // 
+            this.lbActivityTimer.AutoSize = true;
+            this.lbActivityTimer.Location = new System.Drawing.Point(13, 77);
+            this.lbActivityTimer.Name = "lbActivityTimer";
+            this.lbActivityTimer.Size = new System.Drawing.Size(112, 13);
+            this.lbActivityTimer.TabIndex = 4;
+            this.lbActivityTimer.Text = "Inactivity Period (mins)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Postpone timer (mins)";
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(261, 238);
+            this.ClientSize = new System.Drawing.Size(200, 238);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -128,6 +201,8 @@ namespace CWIcon
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inActivityTimer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inReminderTime)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -140,5 +215,9 @@ namespace CWIcon
         private System.Windows.Forms.CheckBox cbStatup;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox cbActivityReminderOn;
+        private System.Windows.Forms.NumericUpDown inReminderTime;
+        private System.Windows.Forms.NumericUpDown inActivityTimer;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbActivityTimer;
     }
 }
