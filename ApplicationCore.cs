@@ -14,6 +14,8 @@ namespace CWIcon
         private Timer activityTimer;
         private AlarmForm alarmMessage;
         private ActivityReminderForm activityReminder;
+        private ActivityReminderBeastForm activityReminderBeast;
+        private int postponeNums;
 
         private enum TimerState
         {
@@ -37,7 +39,6 @@ namespace CWIcon
 
             initTrayIcon();
 
-            // set activity timer ON by default
             if(Properties.Settings.Default.inactivityTimerAutoRun == true)
             {
                 setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
@@ -179,7 +180,34 @@ namespace CWIcon
 
         private void activityPostponed(object sender, EventArgs e)
         {
-            setupActivityTimer(Properties.Settings.Default.inactivityReminderTimerMins, ActivityState.Reminder);
+            if(Properties.Settings.Default.beastMode == true)
+            {
+                postponeNums++;
+
+                if(postponeNums >= Properties.Settings.Default.beastModeThreshold)
+                {
+                    activityReminderBeast = new ActivityReminderBeastForm();
+                    activityReminderBeast.ShowDialog();
+
+                    if (activityReminderBeast.DialogResult == DialogResult.OK)
+                    {
+                        setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
+                        postponeNums = 0;
+                    }
+                    else
+                    {
+                        setupActivityTimer(Properties.Settings.Default.inactivityReminderTimerMins, ActivityState.Reminder);
+                    }
+                }
+                else
+                {
+                    setupActivityTimer(Properties.Settings.Default.inactivityReminderTimerMins, ActivityState.Reminder);
+                }
+            }
+            else
+            {
+                setupActivityTimer(Properties.Settings.Default.inactivityReminderTimerMins, ActivityState.Reminder);
+            }
         }
 
         private void showAlarm(string msg)

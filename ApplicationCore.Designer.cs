@@ -31,12 +31,13 @@ namespace CWIcon
         {
             this.SuspendLayout();
             // 
-            // IconCreator
+            // ApplicationCore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(357, 180);
-            this.Name = "IconCreator";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "ApplicationCore";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "IconCreator";

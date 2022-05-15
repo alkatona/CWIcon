@@ -61,6 +61,45 @@ namespace CWIcon.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap beast_01 {
+            get {
+                object obj = ResourceManager.GetObject("beast_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap beast_nok {
+            get {
+                object obj = ResourceManager.GetObject("beast_nok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap beast_ok {
+            get {
+                object obj = ResourceManager.GetObject("beast_ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seriously, you&apos;re ignoring the reminders to get up and get moving. What the hell are you thinking about?.
+        /// </summary>
+        internal static string msgBeastMessage {
+            get {
+                return ResourceManager.GetString("msgBeastMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This application cannot be updated. It is likely not a ClickOnce application..
         /// </summary>
         internal static string msgUpdateInvalidApplicationDeployment {

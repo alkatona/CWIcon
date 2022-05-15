@@ -29,7 +29,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>40</ApplicationRevision>
+    <ApplicationRevision>41</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -82,7 +82,9 @@
   <ItemGroup>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,6 +97,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityReminderBeastForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivityReminderBeastForm.Designer.cs">
+      <DependentUpon>ActivityReminderBeastForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ActivityReminderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +115,7 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +143,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ActivityReminderBeastForm.resx">
+      <DependentUpon>ActivityReminderBeastForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ActivityReminderForm.resx">
       <DependentUpon>ActivityReminderForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,9 +202,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="resources\beast_nok.jpg" />
+    <None Include="resources\beast_ok.jpg" />
+    <None Include="resources\beast_01.jpeg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

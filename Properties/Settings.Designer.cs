@@ -70,5 +70,29 @@ namespace CWIcon.Properties {
                 this["inactivityTimerAutoRun"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool beastMode {
+            get {
+                return ((bool)(this["beastMode"]));
+            }
+            set {
+                this["beastMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int beastModeThreshold {
+            get {
+                return ((int)(this["beastModeThreshold"]));
+            }
+            set {
+                this["beastModeThreshold"] = value;
+            }
+        }
     }
 }

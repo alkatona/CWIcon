@@ -26,9 +26,10 @@ namespace CWIcon
 
             cbStatup.Checked = Properties.Settings.Default.runAtStartup;
             cbActivityReminderOn.Checked = Properties.Settings.Default.inactivityTimerAutoRun;
+            cbBeastMode.Checked = Properties.Settings.Default.beastMode;
 
             inActivityTimer.Value = Properties.Settings.Default.inactivityTimeMins;
-            inReminderTime.Value = Properties.Settings.Default.inactivityReminderTimerMins;
+            inReminderTime.Value = Properties.Settings.Default.inactivityReminderTimerMins; 
         }
 
         private void btCancel_Click(object sender, EventArgs e)
@@ -80,5 +81,9 @@ namespace CWIcon
             Properties.Settings.Default.inactivityTimerAutoRun = cbActivityReminderOn.Checked;
         }
 
+        private void cbBeatModeChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.beastMode = cbBeastMode.Checked;
+        }
     }
 }
