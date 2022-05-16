@@ -49,7 +49,6 @@ namespace CWIcon
             }
             
             setupSystemEventListeners();
-
         }
 
         private void initTrayIcon()
@@ -135,6 +134,10 @@ namespace CWIcon
             } 
             else
             {
+                if(activityReminder != null)
+                {
+                    activityReminder.Close();
+                }
                 stopActivityTimer();
             }
 
