@@ -186,6 +186,8 @@ namespace CWIcon
 
                 if(postponeNums >= Properties.Settings.Default.beastModeThreshold)
                 {
+                    ((ActivityReminderForm)sender).Close();
+
                     activityReminderBeast = new ActivityReminderBeastForm();
                     activityReminderBeast.ShowDialog();
 
