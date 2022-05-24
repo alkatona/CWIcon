@@ -150,14 +150,24 @@ namespace CWIcon
                 case ActivityState.Windup:
                 case ActivityState.Reminder:
                     // show a reminder alert
-                    activityReminder = new ActivityReminderForm(Properties.Resources.strActivityReminderNote);
 
-                    activityReminder.OnFinishEvent += activityConfirmed;
-                    activityReminder.OnCancelEvent += activityPostponed;
+                    // beast mode
+                    if (Properties.Settings.Default.beastMode == true & postponeNums > Properties.Settings.Default.beastModeThreshold)
+                    {
+                        openBeastReminder();
+                    }
+                    else
+                    {
+                        // normal mode
+                        activityReminder = new ActivityReminderForm(Properties.Resources.strActivityReminderNote);
 
-                    activityReminder.Show();
+                        activityReminder.OnFinishEvent += activityConfirmed;
+                        activityReminder.OnCancelEvent += activityPostponed;
 
-                    activityState = ActivityState.Stopped;
+                        activityReminder.Show();
+
+                        activityState = ActivityState.Stopped;
+                    }
 
                     break;
                 case ActivityState.Stopped:
@@ -178,7 +188,24 @@ namespace CWIcon
 
         private void activityConfirmed(object sender, EventArgs e)
         {
+            postponeNums = 0;
             setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
+        }
+
+        private void openBeastReminder()
+        {
+            activityReminderBeast = new ActivityReminderBeastForm();
+            activityReminderBeast.ShowDialog();
+
+            if (activityReminderBeast.DialogResult == DialogResult.OK)
+            {
+                setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
+                postponeNums = 0;
+            }
+            else
+            {
+                setupActivityTimer(Properties.Settings.Default.inactivityReminderTimerMins, ActivityState.Reminder);
+            }
         }
 
         private void activityPostponed(object sender, EventArgs e)
@@ -190,19 +217,7 @@ namespace CWIcon
                 if(postponeNums >= Properties.Settings.Default.beastModeThreshold)
                 {
                     ((ActivityReminderForm)sender).Close();
-
-                    activityReminderBeast = new ActivityReminderBeastForm();
-                    activityReminderBeast.ShowDialog();
-
-                    if (activityReminderBeast.DialogResult == DialogResult.OK)
-                    {
-                        setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
-                        postponeNums = 0;
-                    }
-                    else
-                    {
-                        setupActivityTimer(Properties.Settings.Default.inactivityReminderTimerMins, ActivityState.Reminder);
-                    }
+                    openBeastReminder();
                 }
                 else
                 {
