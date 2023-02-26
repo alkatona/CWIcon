@@ -1,9 +1,11 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Forms;
+using Point = System.Drawing.Point;
 
 namespace CWIcon
 {
@@ -12,10 +14,21 @@ namespace CWIcon
         private NotifyIcon trayIcon;
         private Timer focusTimer;
         private Timer activityTimer;
+        private Timer mouseTimer;
+        private Point previousMousePosition;
         private AlarmForm alarmMessage;
         private ActivityReminderForm activityReminder;
         private ActivityReminderBeastForm activityReminderBeast;
         private int postponeNums;
+        private int currentdDir = +1;
+
+        private enum MouseState
+        {
+            Init,
+            Wait,
+            Toggle
+        }
+        private MouseState mouseState = MouseState.Init;
 
         private enum TimerState
         {
@@ -63,6 +76,8 @@ namespace CWIcon
                 new MenuItem("-"),
                 new MenuItem("Activity Reminder On/Off", toggleActivityTimerState),
                 new MenuItem("-"),
+                new MenuItem("Mouse Wiggle", toggleMouseWiggle),
+                new MenuItem("-"),
                 new MenuItem ("Settings", openSettings),
                 new MenuItem ("About CWIcon", openAboutForm),
                 new MenuItem("-"),
@@ -70,6 +85,12 @@ namespace CWIcon
             }),
                 Visible = true
             };
+
+            // tick Activity reminder (quick and dirty solution)
+            if(Properties.Settings.Default.inactivityTimerAutoRun == true)
+            {
+                trayIcon.ContextMenu.MenuItems[4].Checked = true;
+            }
 
             trayIcon.Click += TrayIcon_Click;
 
@@ -87,6 +108,39 @@ namespace CWIcon
             UpdateForm updateWindow = new UpdateForm();
 
             updateWindow.ShowDialog();
+        }
+
+        private void toggleMouseWiggle(object sender, EventArgs e)
+        {
+            if(mouseState != MouseState.Init)
+            {
+                stopMouseTimer();
+                trayIcon.ContextMenu.MenuItems[6].Checked = false;
+            }
+            else
+            {
+                setupMouseTimer(1);
+                trayIcon.ContextMenu.MenuItems[6].Checked = true;
+            }
+        }
+
+        private void setupMouseTimer(int minutes)
+        {
+            mouseState = MouseState.Wait;
+
+            mouseTimer = new Timer();
+            mouseTimer.Interval = Properties.Settings.Default.mouseWaitTimePeriodSec * 1000;
+            mouseTimer.Tick += MoveMouse;
+            mouseTimer.Enabled = true;
+            mouseTimer.Start();
+        }
+
+        private void stopMouseTimer()
+        {
+            mouseState = MouseState.Init;
+
+            mouseTimer.Stop();
+            mouseTimer= null;
         }
 
         private void setupActivityTimer(int minutes, ActivityState state)
@@ -131,6 +185,7 @@ namespace CWIcon
             if(activityState == ActivityState.Stopped)
             {
                 setupActivityTimer(Properties.Settings.Default.inactivityTimeMins, ActivityState.Windup);
+                this.trayIcon.ContextMenu.MenuItems[4].Checked = true;
             } 
             else
             {
@@ -139,8 +194,55 @@ namespace CWIcon
                     activityReminder.Close();
                 }
                 stopActivityTimer();
+                this.trayIcon.ContextMenu.MenuItems[4].Checked = false;
             }
 
+        }
+
+        private void MoveMouse(object sender, EventArgs e)
+        {
+            switch(mouseState)
+            {
+                case MouseState.Wait:
+                    if(previousMousePosition != null && previousMousePosition == Cursor.Position)
+                    {
+                        mouseTimer.Stop();
+                        int movementIndex = currentdDir * 5;
+                        currentdDir = currentdDir * -1;
+
+                        this.Cursor = new Cursor(Cursor.Current.Handle);
+
+                        Cursor.Position = new Point(Cursor.Position.X - movementIndex, Cursor.Position.Y - movementIndex);
+
+                        mouseState = MouseState.Toggle;
+
+                        // set timer
+                        mouseTimer.Interval = Properties.Settings.Default.mouseWiggleTimeMs;
+                        mouseTimer.Start();
+                    }
+                    break;
+
+                case MouseState.Toggle:
+                    {
+                        mouseTimer.Stop();
+                        int movementIndex = currentdDir * 5;
+                        currentdDir = currentdDir * -1;
+
+                        this.Cursor = new Cursor(Cursor.Current.Handle);
+
+                        Cursor.Position = new Point(Cursor.Position.X - movementIndex, Cursor.Position.Y - movementIndex);
+
+                        mouseState = MouseState.Wait;
+
+                        // set timer
+                        mouseTimer.Interval = Properties.Settings.Default.mouseWaitTimePeriodSec * 1000;
+                        mouseTimer.Start();
+                    }
+                    break;
+                default:
+                    break;
+            }
+            previousMousePosition = Cursor.Position;
         }
 
         private void ActiviyTimerElapsed(object sender, EventArgs e)
@@ -337,6 +439,7 @@ namespace CWIcon
         private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
             updateIcon();
+
         }
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

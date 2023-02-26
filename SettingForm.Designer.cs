@@ -39,12 +39,15 @@ namespace CWIcon
             this.lbActivityTimer = new System.Windows.Forms.Label();
             this.inReminderTime = new System.Windows.Forms.NumericUpDown();
             this.inActivityTimer = new System.Windows.Forms.NumericUpDown();
-            this.cbActivityReminderOn = new System.Windows.Forms.CheckBox();
             this.cbBeastMode = new System.Windows.Forms.CheckBox();
+            this.cbActivityReminderOn = new System.Windows.Forms.CheckBox();
+            this.inMouseWait = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inReminderTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inActivityTimer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inMouseWait)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,7 +77,7 @@ namespace CWIcon
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.Font = new System.Drawing.Font("Lucida Fax", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btCancel.Location = new System.Drawing.Point(66, 145);
+            this.btCancel.Location = new System.Drawing.Point(65, 152);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(100, 33);
             this.btCancel.TabIndex = 1;
@@ -89,15 +92,17 @@ namespace CWIcon
             this.cbStatup.Name = "cbStatup";
             this.cbStatup.Size = new System.Drawing.Size(212, 23);
             this.cbStatup.TabIndex = 2;
-            this.cbStatup.Text = "Start App with PC";
+            this.cbStatup.Text = "Start App with PC (beta)";
             this.cbStatup.UseVisualStyleBackColor = true;
             this.cbStatup.CheckedChanged += new System.EventHandler(this.cbStartupChanged);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.lbActivityTimer);
+            this.panel2.Controls.Add(this.inMouseWait);
             this.panel2.Controls.Add(this.inReminderTime);
             this.panel2.Controls.Add(this.inActivityTimer);
             this.panel2.Controls.Add(this.cbBeastMode);
@@ -115,18 +120,19 @@ namespace CWIcon
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 103);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.Size = new System.Drawing.Size(143, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Postpone timer (mins)";
+            this.label2.Text = "Postpone activity timer (mins)";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // lbActivityTimer
             // 
             this.lbActivityTimer.AutoSize = true;
             this.lbActivityTimer.Location = new System.Drawing.Point(13, 77);
             this.lbActivityTimer.Name = "lbActivityTimer";
-            this.lbActivityTimer.Size = new System.Drawing.Size(112, 13);
+            this.lbActivityTimer.Size = new System.Drawing.Size(128, 13);
             this.lbActivityTimer.TabIndex = 4;
-            this.lbActivityTimer.Text = "Inactivity Period (mins)";
+            this.lbActivityTimer.Text = "Activity timer period (mins)";
             // 
             // inReminderTime
             // 
@@ -173,6 +179,18 @@ namespace CWIcon
             0,
             0});
             // 
+            // cbBeastMode
+            // 
+            this.cbBeastMode.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbBeastMode.AutoSize = true;
+            this.cbBeastMode.Location = new System.Drawing.Point(146, 46);
+            this.cbBeastMode.Name = "cbBeastMode";
+            this.cbBeastMode.Size = new System.Drawing.Size(82, 23);
+            this.cbBeastMode.TabIndex = 2;
+            this.cbBeastMode.Text = "Samuel Mode";
+            this.cbBeastMode.UseVisualStyleBackColor = true;
+            this.cbBeastMode.CheckedChanged += new System.EventHandler(this.cbBeatModeChanged);
+            // 
             // cbActivityReminderOn
             // 
             this.cbActivityReminderOn.Appearance = System.Windows.Forms.Appearance.Button;
@@ -185,17 +203,37 @@ namespace CWIcon
             this.cbActivityReminderOn.UseVisualStyleBackColor = true;
             this.cbActivityReminderOn.CheckedChanged += new System.EventHandler(this.cbActivityTimerChanged);
             // 
-            // cbBeastMode
+            // inMouseWait
             // 
-            this.cbBeastMode.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbBeastMode.AutoSize = true;
-            this.cbBeastMode.Location = new System.Drawing.Point(146, 46);
-            this.cbBeastMode.Name = "cbBeastMode";
-            this.cbBeastMode.Size = new System.Drawing.Size(82, 23);
-            this.cbBeastMode.TabIndex = 2;
-            this.cbBeastMode.Text = "Samuel Mode";
-            this.cbBeastMode.UseVisualStyleBackColor = true;
-            this.cbBeastMode.CheckedChanged += new System.EventHandler(this.cbBeatModeChanged);
+            this.inMouseWait.Location = new System.Drawing.Point(176, 127);
+            this.inMouseWait.Maximum = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
+            this.inMouseWait.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.inMouseWait.Name = "inMouseWait";
+            this.inMouseWait.Size = new System.Drawing.Size(52, 20);
+            this.inMouseWait.TabIndex = 3;
+            this.inMouseWait.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 129);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Mouse wait time (sec)";
+            this.label1.Click += new System.EventHandler(this.label2_Click);
             // 
             // SettingForm
             // 
@@ -217,6 +255,7 @@ namespace CWIcon
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inReminderTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inActivityTimer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inMouseWait)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -234,5 +273,7 @@ namespace CWIcon
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbActivityTimer;
         private System.Windows.Forms.CheckBox cbBeastMode;
+        private System.Windows.Forms.NumericUpDown inMouseWait;
+        private System.Windows.Forms.Label label1;
     }
 }
