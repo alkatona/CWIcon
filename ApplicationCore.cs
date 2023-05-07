@@ -1,8 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
 using Point = System.Drawing.Point;
@@ -21,6 +21,7 @@ namespace CWIcon
         private ActivityReminderBeastForm activityReminderBeast;
         private int postponeNums;
         private int currentdDir = +1;
+        private ManagedMouse managedMouse = new ManagedMouse();
 
         private enum MouseState
         {
@@ -92,6 +93,12 @@ namespace CWIcon
                 trayIcon.ContextMenu.MenuItems[4].Checked = true;
             }
 
+            if(Properties.Settings.Default.mouseWiggleLastState == true)
+            {
+                setupMouseTimer(1);
+                trayIcon.ContextMenu.MenuItems[6].Checked = true;
+            }
+
             trayIcon.Click += TrayIcon_Click;
 
             updateIcon();
@@ -116,11 +123,13 @@ namespace CWIcon
             {
                 stopMouseTimer();
                 trayIcon.ContextMenu.MenuItems[6].Checked = false;
+                Properties.Settings.Default.mouseWiggleLastState = false;
             }
             else
             {
                 setupMouseTimer(1);
                 trayIcon.ContextMenu.MenuItems[6].Checked = true;
+                Properties.Settings.Default.mouseWiggleLastState = true;
             }
         }
 
@@ -204,15 +213,13 @@ namespace CWIcon
             switch(mouseState)
             {
                 case MouseState.Wait:
-                    if(previousMousePosition != null && previousMousePosition == Cursor.Position)
+                    if(previousMousePosition != null && previousMousePosition == managedMouse.Position)
                     {
                         mouseTimer.Stop();
                         int movementIndex = currentdDir * 5;
                         currentdDir = currentdDir * -1;
 
-                        this.Cursor = new Cursor(Cursor.Current.Handle);
-
-                        Cursor.Position = new Point(Cursor.Position.X - movementIndex, Cursor.Position.Y - movementIndex);
+                        managedMouse.MoveMouse(movementIndex, movementIndex);
 
                         mouseState = MouseState.Toggle;
 
@@ -230,7 +237,7 @@ namespace CWIcon
 
                         this.Cursor = new Cursor(Cursor.Current.Handle);
 
-                        Cursor.Position = new Point(Cursor.Position.X - movementIndex, Cursor.Position.Y - movementIndex);
+                        managedMouse.MoveMouse(movementIndex, movementIndex);
 
                         mouseState = MouseState.Wait;
 
@@ -242,7 +249,8 @@ namespace CWIcon
                 default:
                     break;
             }
-            previousMousePosition = Cursor.Position;
+            //previousMousePosition = Cursor.Position;
+            previousMousePosition = managedMouse.Position;
         }
 
         private void ActiviyTimerElapsed(object sender, EventArgs e)
