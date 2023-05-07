@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="CWIcon.exe" version="1.1.0.51" publicKeyToken="c06ab83a522c214d" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="favicon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="CWIcon" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="CWIcon.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CWIcon.exe" size="231400">
+      <assemblyIdentity name="CWIcon" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>vEJ7wYyyD3VEY4qihZat+1Yx6T8ubFoxZQtirAy1rhg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="CWIcon.exe.config" size="1872">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>F79kf5OiPsQVeKZB11NIfGyW4lrUJRRr9iuHv++RAGI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="favicon.ico" size="15406">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>TBVgV9ZlhyztaBx6Tr9PV9ykwD6wj7VFfHj8ZaYhZ3M=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-GEPG5KH\Lacika" issuerKeyHash="bc0496dc228fcd62de92eec4b3d79a86f2f30c9a" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>y/ebIxobZz3toG9tst4TiljP81aTtyauI2l5QEm7F4s=</DigestValue></Reference></SignedInfo><SignatureValue>sOYjDxBq8KvRt3vKORlErI0+YD74rMn/Xy5RsiUt/Rixb3wDg3RUtnXaSPudNSX1VWi+ZXDBdP3wAVoYamt9vVMWi1lCE3z6By+WFGhLgGVwzDH7hhnOU9bwA4MNM1jQHHSRIhq9Yi4pvN/YBmz+aXlII19mubg0SXTbx4WZBIw=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>t76llSfqzG0E+ICZCcKsh+QNfk/eLtx6DOqBawzIlS3PoYGsUW9oVEgDM4MEv0JlKd2p3+fiseA2vPinz5yiWiUgzkPjyGh26IYzxCbGipVgFKo/hhZdRM3jJM+y+YTHV9xu5hnjktZYrGRxn4SpXBb2G+U7N0+q8QzQCFFVrdk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="8b17bb4940796923ae26b79356f3cf588a13deb26d6fa0ed3d671b1a239bf7cb" Description="" Url=""><as:assemblyIdentity name="CWIcon.exe" version="1.1.0.51" publicKeyToken="c06ab83a522c214d" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-GEPG5KH\Lacika</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>hCWleE9HYjs3B9nHZu8QHX/9RaS2wWTWLkMAkLyoZX0=</DigestValue></Reference></SignedInfo><SignatureValue>dp5w4xD7jRsu0y++0hSKpkfabPSdzOYKZnyL7FnIwcNc6TjQ/yJhafGVz1gwjFmiLObt9oUh/CGTM//wUSa7+tt7qQLWWAmuT9lZUAqWIAA1HfQNDMQoPgugKqohfxk5O1zid1qn3DjYM690Rx6n+ut0otiosKKn0bY6pSwV6zY=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>t76llSfqzG0E+ICZCcKsh+QNfk/eLtx6DOqBawzIlS3PoYGsUW9oVEgDM4MEv0JlKd2p3+fiseA2vPinz5yiWiUgzkPjyGh26IYzxCbGipVgFKo/hhZdRM3jJM+y+YTHV9xu5hnjktZYrGRxn4SpXBb2G+U7N0+q8QzQCFFVrdk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB8TCCAVqgAwIBAgIQT3xS/eqyRIFF/pkkJEbD5zANBgkqhkiG9w0BAQsFADA3MTUwMwYDVQQDHiwARABFAFMASwBUAE8AUAAtAEcARQBQAEcANQBLAEgAXABMAGEAYwBpAGsAYTAeFw0yMzA1MDUyMDAxNDNaFw0yNDA1MDUwMjAxNDNaMDcxNTAzBgNVBAMeLABEAEUAUwBLAFQATwBQAC0ARwBFAFAARwA1AEsASABcAEwAYQBjAGkAawBhMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3vqWVJ+rMbQT4gJkJwqyH5A1+T94u3HoM6oFrDMiVLc+hgaxRb2hUSAMzgwS/QmUp3anf5+Kx4Da8+KfPnKJaJSDOQ+PIaHbohjPEJsaKlWAUqj+GFl1EzeMkz7L5hMdX3G7mGeOS1lisZHGfhKlcFvYb5Ts3T6rxDNAIUVWt2QIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAFnz9dCRBHkU7zHDc3gV8AAuucNX4pTQkfC+/H3kqnPln2zMbpNHjwSwab+xNuOq8SJ9ZB3Rqcs/lDaYLqgfoDiLGRnqlrALIJ/QDuAVlh4oQQN6NP08lhP1LkCCl5TlRI57nvlvDusIRe3TyKZCSHOmSOwqhmiGvXiPtvOqfsg+</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

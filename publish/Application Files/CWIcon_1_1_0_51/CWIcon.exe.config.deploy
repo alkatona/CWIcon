@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="CWIcon.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+  </startup>
+  <userSettings>
+    <CWIcon.Properties.Settings>
+      <setting name="inactivityTimeMins" serializeAs="String">
+        <value>65</value>
+      </setting>
+      <setting name="inactivityReminderTimerMins" serializeAs="String">
+        <value>10</value>
+      </setting>
+      <setting name="runAtStartup" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="inactivityTimerAutoRun" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="beastMode" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="beastModeThreshold" serializeAs="String">
+        <value>5</value>
+      </setting>
+      <setting name="mouseWaitTimePeriodSec" serializeAs="String">
+        <value>30</value>
+      </setting>
+      <setting name="mouseWiggleTimeMs" serializeAs="String">
+        <value>500</value>
+      </setting>
+      <setting name="mouseWiggleLastState" serializeAs="String">
+        <value>False</value>
+      </setting>
+    </CWIcon.Properties.Settings>
+  </userSettings>
+  <connectionStrings>
+    <add name="DefaultConnection" connectionString="Data Source = |SQL/CE|" />
+  </connectionStrings>
+</configuration>
