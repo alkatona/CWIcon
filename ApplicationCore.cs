@@ -2,7 +2,9 @@
 using System;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows;
 using System.Windows.Forms;
 using Point = System.Drawing.Point;
@@ -79,6 +81,8 @@ namespace CWIcon
                 new MenuItem("-"),
                 new MenuItem("Mouse Wiggle", toggleMouseWiggle),
                 new MenuItem("-"),
+                new MenuItem("Format Clipboard", formatClipboard),
+                new MenuItem("-"),
                 new MenuItem ("Settings", openSettings),
                 new MenuItem ("About CWIcon", openAboutForm),
                 new MenuItem("-"),
@@ -102,6 +106,18 @@ namespace CWIcon
             trayIcon.Click += TrayIcon_Click;
 
             updateIcon();
+        }
+
+        private void formatClipboard(object o, EventArgs e)
+        {
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                string cbTxt = Clipboard.GetText();
+                cbTxt = cbTxt.Trim();
+                cbTxt = string.Join("_", cbTxt.Split(Path.GetInvalidFileNameChars()));
+                cbTxt = cbTxt.Replace(" ", "_");
+                Clipboard.SetText(cbTxt);
+            }
         }
 
         private void openSettings(object o, EventArgs e)
