@@ -19,7 +19,7 @@ A classic straightforward calendar desktop application for Windows operating sys
 - .NET framework (4.5 or later)
 
 ## Download
-- Download latest version from [here](https://github.com/alkatona/CWIcon/blob/master/publish/setup.exe) and start setup.exe
+- Download latest version from [here](https://github.com/alkatona/CWIcon/tree/master/installer) and start setup.exe
 
 ## Bugs, requests
 Report an issue for bugs or questions.
