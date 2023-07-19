@@ -81,7 +81,8 @@ namespace CWIcon
                 new MenuItem("-"),
                 new MenuItem("Mouse Wiggle", toggleMouseWiggle),
                 new MenuItem("-"),
-                new MenuItem("Format Clipboard", formatClipboard),
+                new MenuItem("No Format Clipboard", removeFormatClipboard),
+                new MenuItem("PathFormat ClipBoard", formatClipboard),
                 new MenuItem("-"),
                 new MenuItem ("Settings", openSettings),
                 new MenuItem ("About CWIcon", openAboutForm),
@@ -117,6 +118,17 @@ namespace CWIcon
                 cbTxt = string.Join("_", cbTxt.Split(Path.GetInvalidFileNameChars()));
                 cbTxt = cbTxt.Replace(" ", "_");
                 Clipboard.SetText(cbTxt);
+            }
+        }
+
+        private void removeFormatClipboard(object o, EventArgs e)
+        {
+            if (Clipboard.ContainsText(TextDataFormat.Html) || Clipboard.ContainsText(TextDataFormat.Rtf))
+            {
+                string cbTxt = Clipboard.GetText();
+
+                Clipboard.SetText(cbTxt, TextDataFormat.Text);
+                // Clipboard.SetData(DataFormats.Text, cbTxt);
             }
         }
 

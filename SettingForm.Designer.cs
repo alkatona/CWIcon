@@ -35,19 +35,19 @@ namespace CWIcon
             this.btCancel = new System.Windows.Forms.Button();
             this.cbStatup = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbActivityTimer = new System.Windows.Forms.Label();
+            this.inMouseWait = new System.Windows.Forms.NumericUpDown();
             this.inReminderTime = new System.Windows.Forms.NumericUpDown();
             this.inActivityTimer = new System.Windows.Forms.NumericUpDown();
             this.cbBeastMode = new System.Windows.Forms.CheckBox();
             this.cbActivityReminderOn = new System.Windows.Forms.CheckBox();
-            this.inMouseWait = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inMouseWait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inReminderTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inActivityTimer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inMouseWait)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -115,6 +115,16 @@ namespace CWIcon
             this.panel2.Size = new System.Drawing.Size(241, 197);
             this.panel2.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 129);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Mouse wait time (sec)";
+            this.label1.Click += new System.EventHandler(this.label2_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -133,6 +143,28 @@ namespace CWIcon
             this.lbActivityTimer.Size = new System.Drawing.Size(128, 13);
             this.lbActivityTimer.TabIndex = 4;
             this.lbActivityTimer.Text = "Activity timer period (mins)";
+            // 
+            // inMouseWait
+            // 
+            this.inMouseWait.Location = new System.Drawing.Point(176, 127);
+            this.inMouseWait.Maximum = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
+            this.inMouseWait.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.inMouseWait.Name = "inMouseWait";
+            this.inMouseWait.Size = new System.Drawing.Size(52, 20);
+            this.inMouseWait.TabIndex = 3;
+            this.inMouseWait.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // inReminderTime
             // 
@@ -203,38 +235,6 @@ namespace CWIcon
             this.cbActivityReminderOn.UseVisualStyleBackColor = true;
             this.cbActivityReminderOn.CheckedChanged += new System.EventHandler(this.cbActivityTimerChanged);
             // 
-            // inMouseWait
-            // 
-            this.inMouseWait.Location = new System.Drawing.Point(176, 127);
-            this.inMouseWait.Maximum = new decimal(new int[] {
-            600,
-            0,
-            0,
-            0});
-            this.inMouseWait.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.inMouseWait.Name = "inMouseWait";
-            this.inMouseWait.Size = new System.Drawing.Size(52, 20);
-            this.inMouseWait.TabIndex = 3;
-            this.inMouseWait.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 129);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Mouse wait time (sec)";
-            this.label1.Click += new System.EventHandler(this.label2_Click);
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,9 +253,9 @@ namespace CWIcon
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inMouseWait)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inReminderTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inActivityTimer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inMouseWait)).EndInit();
             this.ResumeLayout(false);
 
         }
