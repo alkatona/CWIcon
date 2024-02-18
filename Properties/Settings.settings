@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="inactivityTimeMins" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">65</Value>
+      <Value Profile="(Default)">60</Value>
     </Setting>
     <Setting Name="inactivityReminderTimerMins" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -21,7 +21,7 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="mouseWaitTimePeriodSec" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">120</Value>
     </Setting>
     <Setting Name="mouseWiggleTimeMs" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">500</Value>
