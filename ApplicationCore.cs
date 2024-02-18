@@ -100,7 +100,7 @@ namespace CWIcon
 
             if(Properties.Settings.Default.mouseWiggleLastState == true)
             {
-                setupMouseTimer(1);
+                setupMouseTimer();
                 trayIcon.ContextMenu.MenuItems[6].Checked = true;
             }
 
@@ -155,13 +155,13 @@ namespace CWIcon
             }
             else
             {
-                setupMouseTimer(1);
+                setupMouseTimer();
                 trayIcon.ContextMenu.MenuItems[6].Checked = true;
                 Properties.Settings.Default.mouseWiggleLastState = true;
             }
         }
 
-        private void setupMouseTimer(int minutes)
+        private void setupMouseTimer()
         {
             mouseState = MouseState.Wait;
 
@@ -474,8 +474,25 @@ namespace CWIcon
 
         private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
-            updateIcon();
-
+            
+            switch (e.Mode)
+            {
+                case PowerModes.Suspend:
+                    if (mouseState != MouseState.Init)
+                    {
+                        stopMouseTimer();
+                        Properties.Settings.Default.mouseWiggleLastState = true;
+                    }
+                    break;
+                default:
+                    if (Properties.Settings.Default.mouseWiggleLastState == true)
+                    {
+                        setupMouseTimer();
+                        trayIcon.ContextMenu.MenuItems[6].Checked = true;
+                    }
+                    updateIcon();
+                    break;
+            }
         }
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
